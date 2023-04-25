@@ -47,20 +47,15 @@ const favs = document.getElementById("favs");
 const updateCollections = (id, direction) => {
   let item = document.getElementById(id);
   let icon = item.children[0];
-  /* const collectionsArray = [main, favs];
-  const iconsArray = ["fa-heart-circle-plus", "fa-heart-crack"];
-  direction === "toFavs" ?  */
-  if (direction === "toFavs") {
-    icon.classList.remove("fa-heart-circle-plus");
-    icon.classList.add("fa-heart-crack");
-    main.removeChild(item);
-    favs.appendChild(item);
-  } else {
-    icon.classList.remove("fa-heart-crack");
-    icon.classList.add("fa-heart-circle-plus");
-    favs.removeChild(item);
-    main.appendChild(item);
-  }
+  const iconsArray =
+    direction === "toFavs"
+      ? ["fa-heart-circle-plus", "fa-heart-crack"]
+      : ["fa-heart-crack", "fa-heart-circle-plus"];
+  const collectionsArray = direction === "toFavs" ? [main, favs] : [favs, main];
+  icon.classList.remove(iconsArray[0]);
+  icon.classList.add(iconsArray[1]);
+  collectionsArray[0].removeChild(item);
+  collectionsArray[1].appendChild(item);
 };
 
 /**
