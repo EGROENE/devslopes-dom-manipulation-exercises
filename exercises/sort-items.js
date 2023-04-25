@@ -39,28 +39,16 @@ const sortBtn = Array.from(document.getElementsByClassName("sortBtn"));
 // Your code goes here...
 const sortData = (direction) => {
   const container = document.getElementById("main");
-  if (direction === "desc") {
-    allItems.sort((a, b) => {
-      if (a.id < b.id) {
-        return 1;
-      } else if (a.id > b.id) {
-        return -1;
-      } else {
-        return 0;
-      }
-    });
-  } else {
-    allItems.sort((a, b) => {
-      if (a.id < b.id) {
-        return -1;
-      } else if (a.id > b.id) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-  }
-  console.log(allItems);
+  const positionsArray = direction === "asc" ? [-1, 1] : [1, -1];
+  allItems.sort((a, b) => {
+    if (a.id < b.id) {
+      return positionsArray[0];
+    } else if (a.id > b.id) {
+      return positionsArray[1];
+    } else {
+      return 0;
+    }
+  });
   allItems.forEach((item) => container.appendChild(item));
 };
 
