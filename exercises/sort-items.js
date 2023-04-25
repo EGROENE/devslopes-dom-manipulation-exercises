@@ -13,7 +13,6 @@
 
 // Your code goes here...
 const allItems = Array.from(document.getElementsByClassName("item"));
-console.log(allItems);
 
 /**
  * @task
