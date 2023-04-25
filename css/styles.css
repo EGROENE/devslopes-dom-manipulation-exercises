@@ -1,0 +1,120 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+h2 {
+  padding: 20px;
+}
+
+.item {
+  background: aqua;
+}
+
+#favs .item {
+  background: #da5252;
+  color: #ffffff;
+}
+
+#main,
+#favs {
+  display: flex;
+  gap: 10px;
+  padding: 20px;
+}
+
+#main {
+  margin-bottom: 40px;
+}
+
+.item {
+  padding: 10px 15px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+}
+
+.sort {
+  margin: 20px 0;
+  padding: 10px;
+  border: 1px solid #e5e5e5;
+  max-width: max-content;
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.heading {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+nav {
+  background: #333643;
+  padding: 20px;
+}
+
+nav ul {
+  list-style-type: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav a {
+  color: #DA5252;
+  font-weight: bold;
+}
+
+button.sortBtn {
+  padding: 5px 12px;
+  cursor: pointer;
+  background: #e1e1e1;
+  outline: none;
+  border: 1px solid #f9f9f9;
+  border-radius: 5px;
+}
+
+.violet {
+  background: #9400D3;
+  color: white;
+}
+
+.indigo {
+  background: #4B0082;
+  color: white;
+}
+
+.blue {
+  background: #0000FF;
+  color: white
+}
+
+.green {
+  background: #00FF00;
+}
+
+.yellow {
+  background: #FFFF00;
+}
+
+.orange {
+  background: #FF7F00;
+}
+
+.red {
+  background: #FF0000;
+}
+
+.cardsContainer {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.cardsContainer .card {
+  width: 50px;
+  height: 50px;
+  border: 1px solid gray;
+}
