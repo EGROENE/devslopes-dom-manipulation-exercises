@@ -17,7 +17,7 @@
  * * If the item is NOT in favorites LS and has white background color
  * * * Changes the color of the box to red
  * * * Add the item's id to the local storage
- * * Else if the box is in favorites LS and has white red color
+ * * Else if the box is in favorites LS and has red color
  * * * Changes the color of the box to white
  * * * Add the item's id to the local storage
  * * Make all the items that are listed in the favorites LS save the red background color when the page is reloaded
@@ -38,3 +38,61 @@
  */
 
 // Your code goes here...
+
+// If localStorage.favs doesn't exist, give init it w/ a blank value (done on initial loading of page, as long as localStorage.favs was previously nonexistent):
+if (!localStorage.favs) {
+  localStorage.setItem("favs", " ");
+}
+const cardsContainer = document.getElementsByClassName("cardsContainer");
+const allCards = document.getElementsByClassName("card");
+
+const addToFavs = (id) => {
+  let favsStorageData = localStorage.getItem("favs");
+  favsStorageData === " " ? (favsStorageData = id) : (favsStorageData += id);
+  localStorage.setItem("favs", favsStorageData);
+  let item = document.getElementById(id);
+  // Only set background color of cards (only elems in & including their container that have id) to red:
+  if (item) {
+    item.style.backgroundColor = "red";
+  }
+};
+
+const delFromFavs = (id) => {
+  // Remove id from localStorage.favs (must convert to array first so .splice() can be used):
+  let localStorageFavsArray = Array.from(localStorage.favs);
+  localStorageFavsArray.splice(localStorageFavsArray.indexOf(id), 1);
+  // Convert items in updated array into a string:
+  let favsStorageData = localStorageFavsArray.join("");
+  // ...and set favs to this string:
+  localStorage.setItem("favs", favsStorageData);
+  let item = document.getElementById(id);
+  // Only set background color of cards (only elems in & including their container that have id) to red:
+  if (item) {
+    item.style.backgroundColor = "white";
+  }
+};
+
+const callback = (e) => {
+  let item = e.target;
+  if (!item.classList.contains("cardsContainer")) {
+    if (!localStorage.favs.includes(item.id)) {
+      item.style.backgroundColor = "white";
+      addToFavs(item.id);
+    } else if (localStorage.favs.includes(item.id)) {
+      item.style.backgroundColor = "red";
+      delFromFavs(item.id);
+    }
+  }
+};
+
+for (let container of cardsContainer) {
+  container.addEventListener("click", callback);
+}
+
+for (let card of allCards) {
+  if (!localStorage.favs.includes(card.id)) {
+    card.style.backgroundColor = "white";
+  } else {
+    card.style.backgroundColor = "red";
+  }
+}
